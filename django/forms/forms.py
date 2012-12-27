@@ -95,6 +95,9 @@ class BaseForm(object):
         # Instances should always modify self.fields; they should not modify
         # self.base_fields.
         self.fields = copy.deepcopy(self.base_fields)
+        # Making field aware of their parent form
+        for f in self.fields.itervalues():
+            f.form = self
 
     def __str__(self):
         return self.as_table()
